@@ -4,6 +4,8 @@ import { StrokePanel, Typography } from "./core/ui/text/text";
 import { Button } from "./core/ui/button/button";
 import { Icon, IconType } from "./core/ui/icon/icon";
 import { MainPage } from "./core/ui/page/main_page";
+import { Select } from "./core/ui/select/select";
+import { Input } from "./core/ui/input/input";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -11,6 +13,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
+    <Input initialValue={"Fun10"} />
+    <Select width={100} text="MEDIUM" background="black" textColor={"white"} />
     <Typography
       fontSize={16}
       strokePanel={StrokePanel.Regular}
@@ -23,8 +27,8 @@ root.render(
       color={"black"}
       text={"123"}
     />
-    <Icon bacgorundColor={"#EB6434"} icon={"BagLine"} />
-    <Icon type={IconType.Circle} bacgorundColor={"#EB6434"} icon={"BagLine"} />
+    <Icon backgroundColor={"#EB6434"} icon={"BagLine"} />
+    <Icon type={IconType.Circle} backgroundColor={"#EB6434"} icon={"BagLine"} />
     <Button
       textPadding={15}
       background={"#EB6434"}
@@ -44,15 +48,26 @@ root.render(
       <MainPage
         leftIcon={
           <>
-            <Icon bacgorundColor="rgba(246, 246, 246, 1)" type={IconType.Circle} icon={"Menu"} />
+            <Icon
+              backgroundColor="rgba(246, 246, 246, 1)"
+              type={IconType.Circle}
+              icon={"Menu"}
+            />
           </>
         }
         rightIcon={
           <>
-            <Icon bacgorundColor="rgba(246, 246, 246, 1)" type={IconType.Circle} icon={"BagLine"} />
+            <Icon
+              backgroundColor="rgba(246, 246, 246, 1)"
+              type={IconType.Circle}
+              icon={"BagLine"}
+            />
           </>
         }
         header={"123"}
+        children={<div>
+          
+        </div>}
       />
     </div>
   </React.StrictMode>

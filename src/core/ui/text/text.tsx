@@ -8,11 +8,13 @@ interface IPropsText {
   color: string;
   text: string;
   style?: React.CSSProperties;
+  contentEditable?: boolean;
 }
 
 export const Typography = (props: IPropsText) => {
   return (
     <div
+      contentEditable={props.contentEditable ? "true" : "false"}
       style={Object.assign(
         {
           textTransform: "uppercase",

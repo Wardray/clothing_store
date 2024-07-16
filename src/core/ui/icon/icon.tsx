@@ -3,12 +3,30 @@ export enum IconType {
   Circle = "Circle",
 }
 interface IconProps {
-  bacgorundColor?: string;
+  backgroundColor?: string;
   icon: string;
   type?: IconType;
 }
 const getIcon = (icon: string) => {
   switch (icon) {
+    case "BottomIcon":
+      return (
+        <svg
+          width="14"
+          height="8"
+          viewBox="0 0 14 8"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M2 1.5L7.00004 6.5L12 1.5"
+            stroke="white"
+            stroke-width="1.5"
+            stroke-linecap="square"
+            stroke-linejoin="bevel"
+          />
+        </svg>
+      );
     case "Menu":
       return (
         <svg
@@ -106,7 +124,7 @@ export const Icon = (props: IconProps) => {
   return (
     <div
       style={{
-        backgroundColor: props.bacgorundColor,
+        backgroundColor: props.backgroundColor,
         width: 50,
         height: 50,
         borderRadius: type === IconType.Square ? 15 : 100,
