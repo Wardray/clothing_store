@@ -65,9 +65,7 @@ root.render(
           </>
         }
         header={"123"}
-        children={<div>
-          
-        </div>}
+        children={<div></div>}
       />
     </div>
   </React.StrictMode>
