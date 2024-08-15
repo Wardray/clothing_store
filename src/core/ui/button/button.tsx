@@ -1,5 +1,5 @@
 import React from "react";
-import { StrokePanel, Typography } from "../text/text";
+import { StrokePanel, Typography } from "../typography/typography";
 
 interface IPropsButton {
   background: string;

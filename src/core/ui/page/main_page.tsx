@@ -25,11 +25,11 @@ export const MainPage = (props: MainPageProps) => {
           justifyContent: "space-between",
         }}
       >
-        <div style={{ paddingLeft: 20 }}>{props.leftIcon}</div>{" "}
+        <div style={{ paddingLeft: 20 }}>{props.leftIcon}</div>
         <div>{props.header}</div>
         <div style={{ paddingRight: 20 }}>{props.rightIcon}</div>
       </div>
-      <div style={{ width: "100%", height: "100%" }}>{props.children}</div>
+      <div style={{}}>{props.children}</div>
       <div>{props.button}</div>
     </div>
   );

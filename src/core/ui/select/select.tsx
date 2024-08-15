@@ -1,5 +1,5 @@
 import { Icon } from "../icon/icon";
-import { StrokePanel, Typography } from "../text/text";
+import { StrokePanel, Typography } from "../typography/typography";
 
 interface IPropsSelect {
   background: string;

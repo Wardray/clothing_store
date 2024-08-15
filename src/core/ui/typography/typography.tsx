@@ -9,11 +9,16 @@ interface IPropsText {
   text: string;
   style?: React.CSSProperties;
   contentEditable?: boolean;
+  onClick?: Function;
 }
 
 export const Typography = (props: IPropsText) => {
   return (
     <div
+      onClick={() => {
+        if (props.onClick) props.onClick();
+      }}
+      suppressContentEditableWarning={true}
       contentEditable={props.contentEditable ? "true" : "false"}
       style={Object.assign(
         {

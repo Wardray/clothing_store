@@ -1,13 +1,12 @@
-import { StrokePanel, Typography } from "../text/text";
+import { StrokePanel, Typography } from "../typography/typography";
 
 interface IInputProps {
   initialValue: string;
 }
 export const Input = (props: IInputProps) => {
-
   return (
     <Typography
-      contentEditable= {true}
+      contentEditable={true}
       fontSize={14}
       strokePanel={StrokePanel.Regular}
       color={"black"}
