@@ -2,16 +2,29 @@ import { Result } from "../helper/result";
 
 export class HttpRepository {
   serverAddress = "http://localhost:8080";
-  jsonRequest = async <T>(
+  authJsonRequest = async <T>(
     url: string,
     method: string = "GET",
     requestBody?: any
+  ): Promise<Result<void, T>> =>
+    this.jsonRequest(url, method, requestBody, {
+      auth: localStorage.getItem("auth"),
+    });
+
+  jsonRequest = async <T>(
+    url: string,
+    method: string = "GET",
+    requestBody?: any,
+    requestHeaders?: any
   ): Promise<Result<void, T>> => {
     try {
       const reqInit = {
         body: JSON.stringify(requestBody),
         method: method,
-        headers: { "Content-Type": "application/json" },
+        headers: Object.assign(
+          { "Content-Type": "application/json" },
+          requestHeaders
+        ),
       };
 
       const response = await fetch(this.serverAddress + url, reqInit);

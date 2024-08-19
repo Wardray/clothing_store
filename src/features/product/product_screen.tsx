@@ -107,10 +107,22 @@ export const ProductScreen = observer(() => {
             color={"black"}
             text={"POPULAR PRODUCTS"}
           />
+
           <div style={{ height: "100%" }}>
             {state.map((el) => {
               return (
                 <ProductCard name={el.name} image={el.image} price={el.price} />
+              );
+            })}
+          </div>
+          <div style={{ height: "100%" }}>
+            {state.map((el) => {
+              return (
+                <ProductCard
+                  name="hooded metallic shell jacket"
+                  image={el.image}
+                  price={el.price}
+                />
               );
             })}
           </div>
