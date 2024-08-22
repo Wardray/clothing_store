@@ -1,7 +1,7 @@
 import { Result } from "../helper/result";
 
 export class HttpRepository {
-  serverAddress = "http://localhost:8080";
+  serverAddress = "http://localhost:8081";
   authJsonRequest = async <T>(
     url: string,
     method: string = "GET",

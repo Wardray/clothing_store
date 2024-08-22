@@ -5,7 +5,7 @@ import { Typography, StrokePanel } from "../../core/ui/typography/typography";
 import { CategoryCard } from "./ui/category_card";
 import { ProductCard } from "./ui/product_card";
 import React, { useRef } from "react";
-import { MyStoreScreenPath } from "../store/store_screen";
+import { ProductScreenPath } from "../product1/product_screen";
 import { ProductStore } from "./product_store";
 import { observer } from "mobx-react-lite";
 
@@ -21,11 +21,11 @@ interface IProduct {
   image: string;
   price: number;
 }
-export const ProductScreenPath = "/";
-export const ProductScreen = observer(() => {
+export const ProductScreenPath1 = "/";
+export const ProductScreen1 = observer(() => {
   const navigate = useNavigate();
   const mainDivRef = useRef(null);
-  const [state, setState] = React.useState<IProduct[]>(products);
+
   const [store] = React.useState(new ProductStore());
   React.useEffect(() => {
     store.init();
@@ -44,7 +44,7 @@ export const ProductScreen = observer(() => {
             type={IconType.Circle}
             icon={"Menu"}
             onClick={() => {
-              navigate(MyStoreScreenPath);
+              navigate(ProductScreenPath);
             }}
           />
         </>
@@ -98,8 +98,6 @@ export const ProductScreen = observer(() => {
                 image: "https://imageup.ru/img156/thumb/y56nkqfrdus4866356.jpg",
                 price: 1,
               });
-              console.log(state);
-              setState(products);
             }}
             style={{ paddingTop: 30, paddingLeft: 45, paddingRight: 20 }}
             fontSize={16}
@@ -109,19 +107,15 @@ export const ProductScreen = observer(() => {
           />
 
           <div style={{ height: "100%" }}>
-            {state.map((el) => {
-              return (
-                <ProductCard name={el.name} image={el.image} price={el.price} />
-              );
-            })}
-          </div>
-          <div style={{ height: "100%" }}>
-            {state.map((el) => {
+            {store.products?.products.map((el) => {
               return (
                 <ProductCard
-                  name="hooded metallic shell jacket"
-                  image={el.image}
+                  name={el.name}
+                  image={el.image1}
                   price={el.price}
+                  onClick={() => {
+                    navigate(ProductScreenPath + el.id);
+                  }}
                 />
               );
             })}

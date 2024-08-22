@@ -1,30 +1,33 @@
 import { createBrowserRouter } from "react-router-dom";
 import {
-  ProductScreen,
-  ProductScreenPath,
+  ProductScreen1,
+  ProductScreenPath1,
 } from "../../features/product/product_screen";
 import {
-  MyStoreScreen,
-  MyStoreScreenPath,
-} from "../../features/store/store_screen";
+  ProductScreen,
+  ProductScreenPath,
+} from "../../features/product1/product_screen";
 import {
   MyCartScreen,
   MyCartScreenPath,
 } from "../../features/my_cart/my_cart_screen";
-import { MyCheckOutScreen, MyCheckOutScreenPath } from "../../features/check_out/check_out_screen";
+import {
+  MyCheckOutScreen,
+  MyCheckOutScreenPath,
+} from "../../features/check_out/check_out_screen";
 
 export const router = createBrowserRouter([
   {
-    path: ProductScreenPath,
-    element: <ProductScreen />,
+    path: ProductScreenPath1,
+    element: <ProductScreen1 />,
   },
   {
     path: MyCartScreenPath,
     element: <MyCartScreen />,
   },
   {
-    path: MyStoreScreenPath,
-    element: <MyStoreScreen />,
+    path: ProductScreenPath + ":id",
+    element: <ProductScreen />,
   },
   {
     path: MyCheckOutScreenPath,

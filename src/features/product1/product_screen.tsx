@@ -1,11 +1,19 @@
 import { Icon, IconType } from "../../core/ui/icon/icon";
 import { MainPage } from "../../core/ui/page/main_page";
 import { Typography, StrokePanel } from "../../core/ui/typography/typography";
-
 import { Button } from "../../core/ui/button/button";
+import { useParams } from "react-router-dom";
+import React from "react";
+import { ProductStore } from "./product_store";
+import { observer } from "mobx-react-lite";
 
-export const MyStoreScreenPath = "/1";
-export const MyStoreScreen = () => {
+export const ProductScreenPath = "/product/";
+export const ProductScreen = observer(() => {
+  const { id } = useParams();
+  const [store] = React.useState(new ProductStore());
+  React.useEffect(() => {
+    store.init(id as string);
+  }, []);
   return (
     <MainPage
       leftIcon={
@@ -48,26 +56,29 @@ export const MyStoreScreen = () => {
                 style={{
                   justifyContent: "flex-end",
                   display: "flex",
-                  backgroundColor: "blue",
+
                   height: 326,
                   width: 350,
                 }}
               >
-                <Icon style={{ width: 10, height: 20 }} icon={"Star"} />
-                <Typography
-                  fontSize={14}
-                  strokePanel={StrokePanel.Regular}
-                  color={"#9F9F9F"}
-                  text={"4.7"}
-                />
+                <img src={store.product?.image1} alt={store.product?.name} />
+                <div style={{ position: "absolute" }}>
+                  <Icon style={{ width: 10, height: 20 }} icon={"Star"} />
+                  <Typography
+                    fontSize={14}
+                    strokePanel={StrokePanel.Regular}
+                    color={"#9F9F9F"}
+                    text={"4.7"}
+                  />
+                </div>
               </div>
               <div style={{ padding: 10, display: "flex" }}>
-                <div
+                <img
                   style={{ height: 110, width: 110, backgroundColor: "orange" }}
-                >
-                  2
-                </div>
-                <div
+                  src={store.product?.image2}
+                  alt={store.product?.name}
+                />
+                <img
                   style={{
                     marginRight: 10,
                     marginLeft: 10,
@@ -75,14 +86,14 @@ export const MyStoreScreen = () => {
                     width: 110,
                     backgroundColor: "skyblue",
                   }}
-                >
-                  3
-                </div>
-                <div
-                  style={{ height: 110, width: 110, backgroundColor: "green" }}
-                >
-                  4
-                </div>
+                  src={store.product?.image3}
+                  alt={store.product?.name}
+                />
+                <img
+                  style={{ height: 110, width: 110, backgroundColor: "orange" }}
+                  src={store.product?.image4}
+                  alt={store.product?.name}
+                />
               </div>
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <div
@@ -98,7 +109,7 @@ export const MyStoreScreen = () => {
                     fontSize={22}
                     strokePanel={StrokePanel.UltraBold}
                     color={"black"}
-                    text={"Avoine hooded \n quilted jacket"}
+                    text={store.product?.name}
                   />
                   <Icon icon={"bookmark"} />
                 </div>
@@ -150,4 +161,4 @@ export const MyStoreScreen = () => {
       }
     />
   );
-};
+});

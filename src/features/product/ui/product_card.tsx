@@ -9,11 +9,15 @@ interface IProductCard {
   name: string;
   image: string;
   price: number;
+  onClick: Function;
 }
 
 export const ProductCard = (props: IProductCard) => {
   return (
     <div
+      onClick={() => {
+        props.onClick()
+      }}
       style={{
         display: "flex",
         flexDirection: "row",
