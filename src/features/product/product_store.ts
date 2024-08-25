@@ -1,26 +1,17 @@
-import { makeAutoObservable } from "mobx";
-import { StoreHttpRepository } from "./product_http_repository";
-import { Products } from "./product_model";
+import { makeAutoObservable, observable } from "mobx";
+import { ProductHttpRepository } from "./product_http_repository";
+import { Product } from "../shop/shop_model";
 
 export class ProductStore {
-  isLoading = false;
-  isError = false;
-  products?: Products;
-  storeHttpRepository = new StoreHttpRepository();
+  productHttpRepository = new ProductHttpRepository();
+  product?: Product;
+  async init(id: string) {
+    (await this.productHttpRepository.getProduct(id)).map((model) => {
+      this.product = model;
+      makeAutoObservable(this)
+    });
+  }
   constructor() {
     makeAutoObservable(this);
   }
-  init = async () => {
-    this.isLoading = true;
-    (await this.storeHttpRepository.getProduct()).fold(
-      (model) => {
-        this.isLoading = false;
-        this.products = model;
-      },
-      () => {
-        this.isLoading = false;
-        this.isError = true;
-      }
-    );
-  };
 }

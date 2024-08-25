@@ -1,6 +1,7 @@
 import { HttpRepository } from "../../core/repository/http_repository";
-import { Products } from "./product_model";
+import { Product } from "../shop/shop_model";
 
-export class StoreHttpRepository extends HttpRepository {
-  getProduct = () => this.authJsonRequest<Products>("/products");
+export class ProductHttpRepository extends HttpRepository {
+  getProduct = (id: string) =>
+    this.authJsonRequest<Product>("/product/by/id?id=" + id);
 }

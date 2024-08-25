@@ -1,40 +1,20 @@
-import { useNavigate } from "react-router-dom";
 import { Icon, IconType } from "../../core/ui/icon/icon";
 import { MainPage } from "../../core/ui/page/main_page";
 import { Typography, StrokePanel } from "../../core/ui/typography/typography";
-import { CategoryCard } from "./ui/category_card";
-import { ProductCard } from "./ui/product_card";
-import React, { useRef } from "react";
-import { ProductScreenPath } from "../product1/product_screen";
+import { Button } from "../../core/ui/button/button";
+import { useParams } from "react-router-dom";
+import React from "react";
 import { ProductStore } from "./product_store";
 import { observer } from "mobx-react-lite";
+import { Select } from "../../core/ui/select/select";
 
-const products: IProduct[] = [
-  {
-    name: "",
-    image: "https://imageup.ru/img156/thumb/y56nkqfrdus4866356.jpg",
-    price: 100,
-  },
-];
-interface IProduct {
-  name: string;
-  image: string;
-  price: number;
-}
-export const ProductScreenPath1 = "/";
-export const ProductScreen1 = observer(() => {
-  const navigate = useNavigate();
-  const mainDivRef = useRef(null);
-
+export const ProductScreenPath = "/product/";
+export const ProductScreen = observer(() => {
+  const { id } = useParams();
   const [store] = React.useState(new ProductStore());
   React.useEffect(() => {
-    store.init();
-
-    return () => {
-      console.log("unmount");
-    };
+    store.init(id as string);
   }, []);
-
   return (
     <MainPage
       leftIcon={
@@ -42,10 +22,7 @@ export const ProductScreen1 = observer(() => {
           <Icon
             backgroundColor="rgba(246, 246, 246, 1)"
             type={IconType.Circle}
-            icon={"Menu"}
-            onClick={() => {
-              navigate(ProductScreenPath);
-            }}
+            icon={"Back"}
           />
         </>
       }
@@ -61,17 +38,13 @@ export const ProductScreen1 = observer(() => {
       header={<Icon icon={"ZeloxIcon"} />}
       children={
         <div
-          ref={mainDivRef}
           style={{
-            overflowY: "scroll",
-            overflowX: "hidden",
-            height: "100%",
+            display: "flex",
+            height: 400,
             width: "100%",
-
             paddingTop: 50,
           }}
         >
-          {store.isError}
           <div
             style={{
               display: "flex",
@@ -79,46 +52,126 @@ export const ProductScreen1 = observer(() => {
               justifyContent: "center",
             }}
           >
-            <CategoryCard
-              text={"Trending \n Products"}
-              color={"#F4C600"}
-              icon={<Icon icon={"LeftArrow"} />}
-            />
-            <div style={{ width: 15 }}></div>
-            <CategoryCard
-              text={"Sale \n Products"}
-              color={"#EB6434"}
-              icon={<Icon icon={"LeftArrow"} />}
-            />
-          </div>
-          <Typography
-            onClick={() => {
-              products.push({
-                name: "name",
-                image: "https://imageup.ru/img156/thumb/y56nkqfrdus4866356.jpg",
-                price: 1,
-              });
-            }}
-            style={{ paddingTop: 30, paddingLeft: 45, paddingRight: 20 }}
-            fontSize={16}
-            strokePanel={StrokePanel.UltraBold}
-            color={"black"}
-            text={"POPULAR PRODUCTS"}
-          />
+            <div style={{ height: "100%" }}>
+              <div
+                style={{
+                  justifyContent: "flex-end",
+                  display: "flex",
 
-          <div style={{ height: "100%" }}>
-            {store.products?.products.map((el) => {
-              return (
-                <ProductCard
-                  name={el.name}
-                  image={el.image1}
-                  price={el.price}
-                  onClick={() => {
-                    navigate(ProductScreenPath + el.id);
-                  }}
+                  height: 326,
+                  width: 350,
+                }}
+              >
+                <img src={store.product?.image1} alt={store.product?.name} />
+                <div style={{ position: "absolute" }}>
+                  <Icon style={{ width: 10, height: 20 }} icon={"Star"} />
+                  <Typography
+                    fontSize={14}
+                    strokePanel={StrokePanel.Regular}
+                    color={"#9F9F9F"}
+                    text={"4.7"}
+                  />
+                </div>
+              </div>
+              <div style={{ padding: 10, display: "flex" }}>
+                <img
+                  style={{ height: 110, width: 110, backgroundColor: "orange" }}
+                  src={store.product?.image2}
+                  alt={store.product?.name}
                 />
-              );
-            })}
+                <img
+                  style={{
+                    marginRight: 10,
+                    marginLeft: 10,
+                    height: 110,
+                    width: 110,
+                    backgroundColor: "skyblue",
+                  }}
+                  src={store.product?.image3}
+                  alt={store.product?.name}
+                />
+                <img
+                  style={{ height: 110, width: 110, backgroundColor: "orange" }}
+                  src={store.product?.image4}
+                  alt={store.product?.name}
+                />
+              </div>
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <div
+                  style={{
+                    paddingTop: 20,
+                    alignSelf: "center",
+                    display: "flex",
+                    height: 70,
+                    width: 350,
+                  }}
+                >
+                  <Typography
+                    fontSize={22}
+                    strokePanel={StrokePanel.UltraBold}
+                    color={"black"}
+                    text={store.product?.name}
+                  />
+                  <Icon icon={"bookmark"} />
+                </div>
+                <div
+                  style={{
+                    alignSelf: "center",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    height: 110,
+                    width: 350,
+                  }}
+                >
+                  <div style={{ borderRadius: 10 }}>
+                    <Button
+                      background={"#F5F5F5"}
+                      width={169}
+                      height={122}
+                      text={"Choose color"}
+                    />
+                  </div>
+
+                  <div
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      backgroundColor: "black",
+                      borderRadius: 10,
+                    }}
+                  >
+                    <Typography
+                      style={{ marginTop: 20, marginLeft: 20 }}
+                      fontSize={14}
+                      strokePanel={StrokePanel.Regular}
+                      color={"white"}
+                      text="CHOOSE SIZE"
+                    />
+                    <Select
+                      items={store.product?.sizes ?? []}
+                      value={store.product?.sizes.at(0) ?? ""}
+                      onChange={function (value: string): void {}}
+                      
+                    />
+                  </div>
+                </div>
+                <div
+                  style={{
+                    alignSelf: "center",
+                    marginTop: 20,
+                    height: 110,
+                    width: 350,
+                  }}
+                >
+                  <Button
+                    background={"#EB6434"}
+                    width={350}
+                    height={82}
+                    text={"Checkout"}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       }
