@@ -14,6 +14,9 @@ interface IPropsButton {
 export const Button = (props: IPropsButton) => {
   return (
     <div
+      onClick={() => {
+        if (props.onClick) props.onClick();
+      }}
       style={{
         borderRadius: 15,
         width: props.width,

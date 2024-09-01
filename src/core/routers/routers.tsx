@@ -1,8 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import {
-  MyCartScreen,
-  MyCartScreenPath,
-} from "../../features/my_cart/my_cart_screen";
+import { CartScreen, CartScreenPath } from "../../features/cart/cart_screen";
 import {
   MyCheckOutScreen,
   MyCheckOutScreenPath,
@@ -22,8 +19,8 @@ export const router = createBrowserRouter([
     element: <ProductScreen1 />,
   },
   {
-    path: MyCartScreenPath,
-    element: <MyCartScreen />,
+    path: CartScreenPath,
+    element: <CartScreen />,
   },
   {
     path: ProductScreenPath + ":id",

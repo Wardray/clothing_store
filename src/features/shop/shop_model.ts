@@ -15,6 +15,7 @@ export interface Product {
   grade: number;
   isSales: boolean;
   isTrading: boolean;
+  quality?: number;
 }
 
 export enum Color {

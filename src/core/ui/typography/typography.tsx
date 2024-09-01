@@ -6,7 +6,7 @@ interface IPropsText {
   fontSize: number;
   strokePanel: StrokePanel;
   color: string;
-  text?: string;
+  text?: string | number;
   style?: React.CSSProperties;
   contentEditable?: boolean;
   onClick?: Function;
